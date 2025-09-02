@@ -1,14 +1,9 @@
-# Python
+
 .venv/
+
+.env
+
 __pycache__/
 *.pyc
 
-# Env
-.env
-
-# Dados locais
 data/raw/
-data/curated/
-
-# IDE
-.vscode/

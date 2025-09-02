@@ -15,14 +15,54 @@ STEPS = [
     (PY, "-m", "src.ingest.fetch_matches_fdorg",   "--out", "data/raw/matches_fdorg.json"),
     (PY, "-m", "src.ingest.fetch_scorers_fdorg",   "--out", "data/raw/scorers_fdorg.json"),
 
+    # Derivados baseados em TEAMS (clubes, cores, hex, etc.)
+    (PY, "-m", "src.transform.club_info_from_teams_fdorg",
+        "--in", "data/raw/teams_fdorg.json",
+        "--out", "data/curated/info_clube.csv"),
+
+    # Normalização de partidas (opcional, mas útil)
+    (PY, "-m", "src.transform.normalize_matches_fdorg",
+        "--in", "data/raw/matches_fdorg.json",
+        "--out", "data/curated/partidas.csv"),
+
     # Métricas (curated)
-    (PY, "-m", "src.transform.metrics_team_performance_fdorg",       "--in", "data/raw/standings_fdorg.json", "--out", "data/curated/desempenho_times.csv"),
-    (PY, "-m", "src.transform.metrics_team_form_fdorg",              "--in", "data/raw/matches_fdorg.json",   "--out", "data/curated/forma_times.csv"),
-    (PY, "-m", "src.transform.metrics_goal_trends_fdorg",            "--in", "data/raw/matches_fdorg.json",   "--out", "data/curated/tendencias_gols_times.csv"),
-    (PY, "-m", "src.transform.metrics_comparative_rankings_fdorg",   "--in", "data/raw/standings_fdorg.json", "--out", "data/curated/rankings_comparativos.csv"),
-    (PY, "-m", "src.transform.metrics_calendar_strength_fdorg",      "--matches-in","data/raw/matches_fdorg.json","--standings-in","data/raw/standings_fdorg.json","--out","data/curated/forca_calendario_proximos5.csv"),
-    (PY, "-m", "src.transform.build_dim_calendario",                 "--matches-in","data/raw/matches_fdorg.json","--out","data/curated/dim_calendario.csv"),
-    (PY, "-m", "src.transform.metrics_matches_fdorg",                "--in", "data/raw/matches_fdorg.json","--out", "data/curated/matches_metrics.csv"),
+    (PY, "-m", "src.transform.metrics_team_performance_fdorg",
+        "--in", "data/raw/standings_fdorg.json",
+        "--out", "data/curated/desempenho_times.csv"),
+
+    (PY, "-m", "src.transform.metrics_team_form_fdorg",
+        "--in", "data/raw/matches_fdorg.json",
+        "--out", "data/curated/forma_times.csv"),
+
+    (PY, "-m", "src.transform.metrics_goal_trends_fdorg",
+        "--in", "data/raw/matches_fdorg.json",
+        "--out", "data/curated/tendencias_gols_times.csv"),
+
+    (PY, "-m", "src.transform.metrics_comparative_rankings_fdorg",
+        "--in", "data/raw/standings_fdorg.json",
+        "--out", "data/curated/rankings_comparativos.csv"),
+
+    (PY, "-m", "src.transform.metrics_calendar_strength_fdorg",
+        "--matches-in","data/raw/matches_fdorg.json",
+        "--standings-in","data/raw/standings_fdorg.json",
+        "--out","data/curated/forca_calendario_proximos5.csv"),
+
+    (PY, "-m", "src.transform.build_dim_calendario",
+        "--matches-in","data/raw/matches_fdorg.json",
+        "--out","data/curated/dim_calendario.csv"),
+
+    (PY, "-m", "src.transform.metrics_matches_fdorg",
+        "--in", "data/raw/matches_fdorg.json",
+        "--out", "data/curated/matches_metrics.csv"),
+
+    (PY, "-m", "src.transform.metrics_scorers_ranking_fdorg",
+        "--scorers-in","data/raw/scorers_fdorg.json",
+        "--teams-in","data/raw/teams_fdorg.json",
+        "--out","data/curated/artilharia.csv",
+        "--top","50"),
+
+    # Scraper UFMG (probabilidades de rebaixamento/campeão)
+    (PY, "-m", "src.scraper.scraper_ufmg"),
 ]
 
 def run(cmd):
