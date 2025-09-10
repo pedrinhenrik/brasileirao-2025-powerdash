@@ -20,11 +20,6 @@ STEPS = [
         "--in", "data/raw/teams_fdorg.json",
         "--out", "data/curated/info_clube.csv"),
 
-    # Normalização de partidas (opcional, mas útil)
-    (PY, "-m", "src.transform.normalize_matches_fdorg",
-        "--in", "data/raw/matches_fdorg.json",
-        "--out", "data/curated/partidas.csv"),
-
     # Métricas (curated)
     (PY, "-m", "src.transform.metrics_team_performance_fdorg",
         "--in", "data/raw/standings_fdorg.json",
@@ -61,8 +56,22 @@ STEPS = [
         "--out","data/curated/artilharia.csv",
         "--top","50"),
 
-    # Scraper UFMG (probabilidades de rebaixamento/campeão)
-    (PY, "-m", "src.scraper.scraper_ufmg"),
+    # Merge com paths explícitos (saída em curated)
+    (PY, "-m", "src.transform.merge_ogol_teams_fdorg",
+    "--fdorg-json", "data/raw/teams_fdorg.json",
+    "--ogol-csv",   "data/scraper/ogol_melhores_2025_full.csv",
+    "--out",        "data/scraper/merged_players_2025.csv"),
+
+    # Scraper ogol (Desempenhos)
+    (PY, "-m", "src.scraper.scraper_ogol",
+        "--url", "https://www.ogol.com.br/edicao/brasileirao-serie-a-2025/194851/melhores-desempenhos",
+        "--out", "data/scraper/ogol_melhores_2025_full.csv"),
+
+    # Scraper UFMG
+    (PY, "-m", "src.scraper.scraper_ufmg", 
+    "--out", "data/curated/prob_ufmg.csv",
+    "--info", "data/curated/info_clube.csv"),
+
 ]
 
 def run(cmd):

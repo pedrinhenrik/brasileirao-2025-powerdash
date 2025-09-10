@@ -1,9 +1,33 @@
-
+# Python
 .venv/
-
-.env
-
 __pycache__/
 *.pyc
 
+# IDE
+.vscode/
+.idea/
+
+# Dados e artefatos
 data/raw/
+data/scraper/
+data/prob/
+data/curated/
+!data/**/.gitkeep
+
+# Selenium
+*.log
+
+# Env & secrets
+.env
+.env.*
+*.env
+*.env.*
+.env.local
+.envrc
+secrets/
+!.env.example
+*.key
+*.pem
+*.p12
+*.crt
+*.secret
