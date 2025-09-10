@@ -2,26 +2,27 @@
 
 ## 📊 Prévia do Dashboard
 
-### Página 1 – Home
-![Home](docs/images/Home.png)
+**Página 1 – Home**  
+[📄 Abrir Home.pdf](docs/images/Home.pdf)
 
-### Página 2 – Info
-![Info](docs/images/Info.png)
+**Página 2 – Info**  
+[📄 Abrir Info.pdf](docs/images/Info.pdf)
 
-### Página 3 – Jogadores
-![Jogadores](docs/images/Jogadores.png)
+**Página 3 – Jogadores**  
+[📄 Abrir Jogadores.pdf](docs/images/Jogadores.pdf)
 
-### Página 4 – Tabela
-![Tabela](docs/images/Tabela.png)
+**Página 4 – Tabela**  
+[📄 Abrir Tabela.pdf](docs/images/Tabela.pdf)
+
+**Página 5 – Estatística**  
+[📄 Abrir Estatistica.pdf](docs/images/Estatistica.pdf)
 
 ---
 
-### 🎥 Interatividade
-
-**Visão Geral**  
+**Interatividade – Visão Geral**  
 ![Dashboard Demo](docs/images/Gif Dashboard.gif)
 
-**Estatísticas**  
+**Interatividade – Estatísticas**  
 ![Dashboard Estatística Demo](docs/images/Gif Dashboard estatistica.gif)
 
 ---
